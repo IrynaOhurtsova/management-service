@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+
+    <changeSet id="add_journey" author="Iryna Ohurtsova">
+        <sql>
+            INSERT INTO `journey` (`departure_station`, `destination_station`, `time`, `price`, `free_places`) VALUES
+            ('Dnipro', 'Kyiv', '14:00:00', 500, 18),
+            ('Dnipro', 'Odessa', '09:00:00', 600, 18),
+            ('Dnipro', 'Lviv', '07:00:00', 1000, 18);
+        </sql>
+    </changeSet>
+
+</databaseChangeLog>

@@ -1,6 +1,8 @@
 spring:
   datasource:
     driverClassName: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/busticket?createDatabaseIfNotExist=true
+    url: jdbc:mysql://localhost:3306/bus_ticket?createDatabaseIfNotExist=true
     username: root
     password: root
+  liquibase:
+    change-log: db.changelog/db.changelog-master.xml

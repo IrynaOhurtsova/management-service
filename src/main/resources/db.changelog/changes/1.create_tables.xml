@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+
+    <changeSet id="create_journey_table" author="Iryna Ohurtsova">
+        <sql>
+            CREATE TABLE IF NOT EXISTS `journey` (
+            `id` bigint NOT NULL AUTO_INCREMENT,
+            `departure_station` varchar(50) NOT NULL,
+            `destination_station` varchar(50) NOT NULL,
+            `time` time NOT NULL,
+            `price` double NOT NULL,
+            `free_places` double NOT NULL,
+            PRIMARY KEY (`id`));
+        </sql>
+    </changeSet>
+
+    <changeSet id="create_ticket_table" author="Iryna Ohurtsova">
+        <sql>
+            CREATE TABLE IF NOT EXISTS `ticket` (
+            `id` bigint NOT NULL AUTO_INCREMENT,
+            `last_name` varchar(50) NOT NULL,
+            `first_name` varchar(50) NOT NULL,
+            `patronymic` varchar(50) NOT NULL,
+            `journey_id` bigint NOT NULL,
+            `payment_id` bigint NOT NULL,
+            PRIMARY KEY (`id`),
+            KEY `journey_id` (`journey_id`),
+            CONSTRAINT `journey_id` FOREIGN KEY (`journey_id`) REFERENCES `journey` (`id`));
+        </sql>
+    </changeSet>
+
+</databaseChangeLog>
