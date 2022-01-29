@@ -19,6 +19,8 @@
         <maven.compiler.target>8</maven.compiler.target>
         <mysql.version>8.0.26</mysql.version>
         <liquibase.version>4.6.2</liquibase.version>
+        <junit.version>5.8.1</junit.version>
+        <mockito.version>2.21.0</mockito.version>
     </properties>
 
     <dependencies>
@@ -44,6 +46,18 @@
             <groupId>org.liquibase</groupId>
             <artifactId>liquibase-core</artifactId>
             <version>${liquibase.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-engine</artifactId>
+            <version>${junit.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.mockito</groupId>
+            <artifactId>mockito-core</artifactId>
+            <version>${mockito.version}</version>
+            <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>io.springfox</groupId>
