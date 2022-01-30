@@ -1,6 +1,8 @@
-package org.bus.ticket.management.service;
+package org.bus.ticket.management.configuration;
 
 import org.bus.ticket.management.dto.PaymentStatus;
+import org.bus.ticket.management.service.FailedStatusPaymentProcessor;
+import org.bus.ticket.management.service.PaymentProcessor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 

@@ -9,10 +9,10 @@ import org.springframework.data.annotation.Id;
 public class Ticket {
 
     @Id
-    long id;
-    String lastName;
-    String firstName;
-    String patronymic;
-    long journeyId;
-    long paymentId;
+    private long id;
+    private String lastName;
+    private String firstName;
+    private String patronymic;
+    private long journeyId;
+    private long paymentId;
 }
