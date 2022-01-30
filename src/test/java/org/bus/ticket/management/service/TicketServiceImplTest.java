@@ -1,10 +1,5 @@
 package org.bus.ticket.management.service;
 
-import org.bus.ticket.management.dto.BuyTicketDto;
-import org.bus.ticket.management.dto.PayTicketDto;
-import org.bus.ticket.management.dto.TicketInformationDto;
-import org.bus.ticket.management.entity.Journey;
-import org.bus.ticket.management.entity.Ticket;
 import org.bus.ticket.management.mapper.ToTicketInformationDtoMapper;
 import org.bus.ticket.management.repository.JourneyRepository;
 import org.bus.ticket.management.repository.TicketRepository;
@@ -14,60 +9,17 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import java.time.LocalTime;
 import java.util.Optional;
 
 import static java.lang.String.format;
 import static org.bus.ticket.management.dto.PaymentStatus.NEW;
+import static org.bus.ticket.management.util.TicketTestUtils.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
 class TicketServiceImplTest {
-
-    private static final BuyTicketDto BUY_TICKET_DTO = new BuyTicketDto("Ivan", "Ivanov", "Ivanovich", 1L);
-    private static final Journey JOURNEY = Journey.builder()
-            .id(1L)
-            .departureStation("Dnipro")
-            .destinationStation("Kyiv")
-            .time(LocalTime.of(14, 0))
-            .price(500)
-            .freePlaces(18).build();
-    private static final Journey JOURNEY_WITHOUT_FREE_PLACES = Journey.builder()
-            .id(1L)
-            .departureStation("Dnipro")
-            .destinationStation("Kyiv")
-            .time(LocalTime.of(14, 0))
-            .price(500)
-            .freePlaces(0).build();
-    private static final Journey JOURNEY_WITH_BUY_TICKET = JOURNEY.decreaseFreePlaces();
-    private static final PayTicketDto PAY_TICKET_DTO = PayTicketDto.builder()
-            .firstName(BUY_TICKET_DTO.getFirstName())
-            .lastName(BUY_TICKET_DTO.getLastName())
-            .patronymic(BUY_TICKET_DTO.getPatronymic())
-            .sum(JOURNEY.getPrice()).build();
-    private static final Ticket TICKET = Ticket.builder()
-            .firstName(BUY_TICKET_DTO.getFirstName())
-            .lastName(BUY_TICKET_DTO.getLastName())
-            .patronymic(BUY_TICKET_DTO.getPatronymic())
-            .journeyId(JOURNEY.getId())
-            .paymentId(1L).build();
-    private static final Ticket SAVED_TICKET = Ticket.builder()
-            .id(1L)
-            .firstName(BUY_TICKET_DTO.getFirstName())
-            .lastName(BUY_TICKET_DTO.getLastName())
-            .patronymic(BUY_TICKET_DTO.getPatronymic())
-            .journeyId(JOURNEY.getId())
-            .paymentId(1L).build();
-    private static final TicketInformationDto TICKET_INFORMATION_DTO = TicketInformationDto.builder()
-            .id(SAVED_TICKET.getId())
-            .departureStation(JOURNEY.getDepartureStation())
-            .destinationStation(JOURNEY.getDestinationStation())
-            .freePlaces(JOURNEY.getFreePlaces())
-            .price(JOURNEY.getPrice())
-            .time(JOURNEY.getTime())
-            .paymentStatus(NEW).build();
 
     @Mock
     private TicketRepository ticketRepository;
