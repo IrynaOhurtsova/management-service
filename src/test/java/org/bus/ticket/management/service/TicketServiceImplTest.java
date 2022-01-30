@@ -13,6 +13,7 @@ import java.util.Optional;
 
 import static java.lang.String.format;
 import static org.bus.ticket.management.dto.PaymentStatus.NEW;
+import static org.bus.ticket.management.util.JourneyTestUtils.*;
 import static org.bus.ticket.management.util.TicketTestUtils.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
