@@ -11,12 +11,12 @@ import java.time.LocalTime;
 public class Journey {
 
     @Id
-    long id;
-    String departureStation;
-    String destinationStation;
-    LocalTime time;
-    double price;
-    int freePlaces;
+    private long id;
+    private String departureStation;
+    private String destinationStation;
+    private LocalTime time;
+    private double price;
+    private int freePlaces;
 
     public Journey decreaseFreePlaces() {
         return this.toBuilder()
