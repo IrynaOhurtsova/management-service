@@ -1,0 +1,32 @@
+version: '3.7'
+
+services:
+  db:
+    image: mysql
+    command: --default-authentication-plugin=mysql_native_password
+    restart: always
+    hostname: mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+
+  payment-service:
+    image: irynaohurtsova/payment-service
+    hostname: payment-service
+    restart: always
+    depends_on:
+      - db
+    environment:
+      PAYMENT_SERVICE_DB_URL: jdbc:mysql://mysql:3306/bus_payment?createDatabaseIfNotExist=true
+
+  management-service:
+    image: irynaohurtsova/management-service
+    hostname: management-service
+    ports:
+      - "8080:8080"
+    restart: always
+    depends_on:
+      - db
+      - payment-service
+    environment:
+      PAYMENT_SERVICE_URL: http://payment-service:8080/payment
+      MANAGEMENT_SERVICE_DB_URL: jdbc:mysql://mysql:3306/bus_ticket?createDatabaseIfNotExist=true

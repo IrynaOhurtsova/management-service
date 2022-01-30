@@ -1,9 +1,9 @@
 spring:
   datasource:
     driverClassName: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/bus_ticket?createDatabaseIfNotExist=true
+    url: ${MANAGEMENT_SERVICE_DB_URL}
     username: root
     password: root
 payment:
   service:
-    baseUrl: http://localhost:8081/payment
+    baseUrl: ${PAYMENT_SERVICE_URL}
