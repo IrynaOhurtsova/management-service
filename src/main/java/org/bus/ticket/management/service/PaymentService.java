@@ -8,7 +8,6 @@ import java.util.List;
 
 public interface PaymentService {
 
-
     long buyTicket(PayTicketDto payTicketDto);
 
     PaymentStatus getStatusById(long paymentId);
@@ -16,4 +15,6 @@ public interface PaymentService {
     List<Payment> findAllByPaymentStatus(PaymentStatus paymentStatus);
 
     void saveAll(List<Payment> payments);
+
+    Payment findById(long paymentId);
 }

@@ -3,6 +3,7 @@ package org.bus.ticket.management.util;
 import lombok.experimental.UtilityClass;
 import org.bus.ticket.management.dto.BuyTicketResultDto;
 import org.bus.ticket.management.dto.PayTicketDto;
+import org.bus.ticket.management.dto.PayTicketResultDto;
 import org.bus.ticket.management.dto.PaymentStatus;
 import org.bus.ticket.management.entity.Payment;
 
@@ -29,6 +30,6 @@ public class PaymentTestUtils {
             .lastName(BUY_TICKET_DTO.getLastName())
             .patronymic(BUY_TICKET_DTO.getPatronymic())
             .sum(JOURNEY.getPrice()).build();
-    public static final BuyTicketResultDto BUY_TICKET_RESULT_DTO = new BuyTicketResultDto(PAYMENT_WITH_NEW_STATUS.getId());
+    public static final PayTicketResultDto PAY_TICKET_RESULT_DTO = new PayTicketResultDto(PAYMENT_WITH_NEW_STATUS.getId());
 
 }

@@ -56,7 +56,7 @@ public class TicketServiceImpl implements TicketService {
                 .orElseThrow(() -> new IllegalArgumentException(format("ticket with id %s not found", ticketId)));
         Journey journey = journeyRepository.findById(ticket.getJourneyId())
                 .orElseThrow(() -> new IllegalArgumentException(format("journey with id %s not found", ticket.getJourneyId())));
-        PaymentStatus paymentStatus = paymentService.getStatusById(ticket.getPaymentId());
+        PaymentStatus paymentStatus = paymentService.findById(ticket.getPaymentId()).getPaymentStatus();
         return toTicketInformationDtoMapper.mapToTicketInformationDto(ticket, journey, paymentStatus);
     }
 

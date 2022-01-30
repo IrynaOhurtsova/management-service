@@ -1,6 +1,7 @@
 package org.bus.ticket.management.service;
 
 import org.bus.ticket.management.dto.BuyTicketResultDto;
+import org.bus.ticket.management.dto.PayTicketResultDto;
 import org.bus.ticket.management.dto.PaymentServiceSettings;
 import org.bus.ticket.management.dto.PaymentStatus;
 import org.bus.ticket.management.entity.Payment;
@@ -16,7 +17,7 @@ import java.util.Collections;
 import java.util.List;
 
 import static org.bus.ticket.management.dto.PaymentStatus.NEW;
-import static org.bus.ticket.management.util.PaymentTestUtils.BUY_TICKET_RESULT_DTO;
+import static org.bus.ticket.management.util.PaymentTestUtils.PAY_TICKET_RESULT_DTO;
 import static org.bus.ticket.management.util.PaymentTestUtils.PAYMENT_WITH_NEW_STATUS;
 import static org.bus.ticket.management.util.TicketTestUtils.PAY_TICKET_DTO;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -42,11 +43,11 @@ class PaymentServiceImplTest {
 
     @Test
     void buyTicket() {
-        ResponseEntity<BuyTicketResultDto> buyTicketResultDtoResponseEntity = new ResponseEntity<>(BUY_TICKET_RESULT_DTO, OK);
+        ResponseEntity<PayTicketResultDto> buyTicketResultDtoResponseEntity = new ResponseEntity<>(PAY_TICKET_RESULT_DTO, OK);
 
-        when(restTemplate.postForEntity(paymentServiceSettings.getBaseUrl(), PAY_TICKET_DTO, BuyTicketResultDto.class)).thenReturn(buyTicketResultDtoResponseEntity);
+        when(restTemplate.postForEntity(paymentServiceSettings.getBaseUrl(), PAY_TICKET_DTO, PayTicketResultDto.class)).thenReturn(buyTicketResultDtoResponseEntity);
 
-        assertEquals(BUY_TICKET_RESULT_DTO.getPaymentId(), paymentService.buyTicket(PAY_TICKET_DTO));
+        assertEquals(PAY_TICKET_RESULT_DTO.getPaymentId(), paymentService.buyTicket(PAY_TICKET_DTO));
     }
 
     @Test
@@ -63,7 +64,7 @@ class PaymentServiceImplTest {
         List<Payment> payments = Collections.singletonList(PAYMENT_WITH_NEW_STATUS);
         ResponseEntity<Payment[]> responseEntity = new ResponseEntity<>(payments.toArray(new Payment[0]), OK);
 
-        when(restTemplate.getForEntity(paymentServiceSettings.getBaseUrl() + "/" + NEW, Payment[].class)).thenReturn(responseEntity);
+        when(restTemplate.getForEntity(paymentServiceSettings.getBaseUrl() + "/status/" + NEW, Payment[].class)).thenReturn(responseEntity);
 
         assertEquals(payments, paymentService.findAllByPaymentStatus(NEW));
     }

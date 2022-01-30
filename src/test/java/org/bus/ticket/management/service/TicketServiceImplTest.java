@@ -14,6 +14,7 @@ import java.util.Optional;
 import static java.lang.String.format;
 import static org.bus.ticket.management.dto.PaymentStatus.NEW;
 import static org.bus.ticket.management.util.JourneyTestUtils.*;
+import static org.bus.ticket.management.util.PaymentTestUtils.PAYMENT_WITH_NEW_STATUS;
 import static org.bus.ticket.management.util.TicketTestUtils.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -61,7 +62,7 @@ class TicketServiceImplTest {
     void getTicketInformation() {
         when(ticketRepository.findById(SAVED_TICKET.getId())).thenReturn(Optional.of(SAVED_TICKET));
         when(journeyRepository.findById(SAVED_TICKET.getJourneyId())).thenReturn(Optional.of(JOURNEY));
-        when(paymentService.getStatusById(TICKET.getPaymentId())).thenReturn(NEW);
+        when(paymentService.findById(TICKET.getPaymentId())).thenReturn(PAYMENT_WITH_NEW_STATUS);
         when(toTicketInformationDtoMapper.mapToTicketInformationDto(SAVED_TICKET, JOURNEY, NEW)).thenReturn(TICKET_INFORMATION_DTO);
 
         assertEquals(TICKET_INFORMATION_DTO, ticketService.getTicketInformation(SAVED_TICKET.getId()));

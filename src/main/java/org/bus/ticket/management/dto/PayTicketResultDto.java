@@ -3,7 +3,7 @@ package org.bus.ticket.management.dto;
 import lombok.Value;
 
 @Value
-public class BuyTicketResultDto {
+public class PayTicketResultDto {
 
-    long ticketId;
+    long paymentId;
 }
